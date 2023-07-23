@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = "0.0.5"
+VERSION = "0.0.9"
 DESCRIPTION = ""
 LONG_DESCRIPTION = ""
 
@@ -20,3 +20,5 @@ setup(
     keywords=["python"],
     classifiers=[],
 )
+
+
