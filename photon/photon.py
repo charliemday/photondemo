@@ -1,7 +1,7 @@
 import typing
 
-from photon.logger.logger import PhotonLogger
-from photon.processors.processor import PhotonProcessor
+from .logger import PhotonLogger
+from .processors import PhotonProcessor
 
 
 class Photon:
@@ -35,11 +35,13 @@ class Photon:
             **kwargs
         )
 
-        photon_logger = PhotonLogger()
-
-        # 
-        photon_logger.log_output(
-            payload=processor.process_provider(*args, **kwargs)
-        )
+        try:
+            # Log the output
+            photon_logger = PhotonLogger()
+            photon_logger.log_output(
+                payload=processor.process_provider(*args, **kwargs)
+            )
+        except Exception as e:
+            print('[Photon Error]', e)
 
         return result

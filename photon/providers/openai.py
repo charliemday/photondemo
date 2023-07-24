@@ -10,7 +10,8 @@ class OpenAIProvider:
 
     def build_object(self, result, prompt, model, tokens):
         return {
-            "result": result[:200],
+            # TODO: Extend this string size
+            "result": result[:200] if result is not None else "",
             "provider": "openai",
             "prompt": prompt,
             "model": model,
@@ -20,7 +21,15 @@ class OpenAIProvider:
 
 
     def process_chat_completions(self, *args, **kwargs):
-        result = self.response.choices[0].message.content
+
+        if self.response.choices[0].message.get("function_call") is not None:
+            # Function call
+            result = self.response.choices[0].message.function_call.arguments
+        else:
+            # Message call
+            result = self.response.choices[0].message.content
+
+
         prompt = kwargs.get("messages")[0].get("content")
         return self.build_object(
             result=result,

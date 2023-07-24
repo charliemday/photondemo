@@ -1,4 +1,4 @@
-from photon.providers.openai import OpenAIProvider
+from ..providers import OpenAIProvider
 
 
 class PhotonProcessor:
