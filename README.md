@@ -51,3 +51,19 @@ response = openai.ChatCompletion.create(
 )
 
 ```
+
+## Developing Locally
+
+Developing locally is easy. Just clone the repo and install the package in editable mode.
+
+```
+pip install -e <project-folder>
+```
+
+### Testing
+
+Be sure to set your own OPENAI_API_KEY in `tests/conftest.py` before running tests.
+
+```
+
+```

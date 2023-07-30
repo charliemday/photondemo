@@ -1,7 +1,11 @@
-from ..providers import OpenAIProvider
+from .providers import OpenAIProvider
 
 
 class PhotonProcessor:
+    """
+    This class handles processing the response from the different
+    providers
+    """
 
     def __init__(self, provider: str = None, response: dict = None, *args, **kwargs) -> None:
         self.provider = provider
@@ -19,5 +23,7 @@ class PhotonProcessor:
             provider = OpenAIProvider(self.response)
             return provider.process_response(*args, **kwargs)
             # Do something
+
+        # TODO: Add further providers
 
         return None
